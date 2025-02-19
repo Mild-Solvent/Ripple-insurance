@@ -101,45 +101,45 @@ export default function Home() {
       <main className="flex-1 container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-6xl font-bold mb-8 bg-gradient-to-r from-blue-600 via-cyan-500 to-green-500 bg-clip-text text-transparent">
-            Decentralized Insurance Protection
+            Insuring Resilience: Blockchain for Climate-Stressed Farmers
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 leading-relaxed">
-            Secure your assets through community-powered risk sharing.
-            Get instant coverage with blockchain-powered smart contracts
-            and crowd-funded protection pools.
+            Imagine instant compensation after a climate disaster. Our blockchain dApp delivers fraud-proof crop insurance 
+            with auto-payouts triggered by satellite and IoT data. Empowering 300 million smallholder farmers to overcome 
+            climate vulnerability through XRPL's 3-second settlements and Ethereum smart contracts.
           </p>
           
           <Link 
             href="/create-policy"
             className="inline-block bg-gradient-to-r from-green-600 to-emerald-500 text-white px-10 py-4 rounded-xl text-lg font-medium hover:shadow-xl hover:scale-105 transition-all duration-200"
           >
-            Create Your Policy
+            Get Protected Now
           </Link>
 
           <div className="grid md:grid-cols-3 gap-8 mt-20">
             <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Instant Coverage</h3>
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Parametric Smart Contracts</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Get protected in minutes with automated underwriting
+                Auto-payouts triggered by satellite data, reducing claim times from 45 days to 3 hours
               </p>
             </div>
             <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-green-500 bg-clip-text text-transparent">Community Backed</h3>
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-green-500 bg-clip-text text-transparent">RLUSD Stablecoin</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Pooled risk with decentralized governance
+                NYDFS-regulated payouts are 100x cheaper with transparent transfers
               </p>
             </div>
             <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-200 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">Transparent Claims</h3>
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">Real-Time Monitoring</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Smart contract enforced payouts
+                Chainlink oracles track NASA and MODIS satellite data for accurate payouts
               </p>
             </div>
           </div>
 
           <div className="flex justify-between items-center mb-16 mt-20">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Your Crypto Insurance Policies
+              Active Insurance Policies
             </h2>
             <div className="flex gap-4">
               <button
@@ -171,7 +171,7 @@ export default function Home() {
                       <div>
                         <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">{policy.id}</h3>
                         <p className="text-gray-600 dark:text-gray-400">
-                          {policy.coverageAmount} USD • {policy.duration} months • {policy.assetType}
+                          {policy.coverageAmount} RLUSD • {policy.duration} months • {policy.assetType}
                         </p>
                       </div>
                       <span className="px-4 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-600 dark:text-green-400 rounded-full font-medium">
@@ -184,7 +184,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="text-center py-16 text-gray-500 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
-              No active policies found
+              No active policies found. Start protecting your crops today.
             </div>
           )}
         </div>
@@ -196,28 +196,28 @@ export default function Home() {
           <div>
             <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">ShieldCrowd</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Decentralized insurance protocol powered by community
+              Transforming agriculture with blockchain-powered crop insurance
             </p>
           </div>
           <div>
             <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Products</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Business Insurance</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Asset Protection</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Crop Insurance</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Climate Protection</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-cyan-500 to-green-500 bg-clip-text text-transparent">Security</h4>
+            <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-cyan-500 to-green-500 bg-clip-text text-transparent">Partners</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Audits</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Coverage Terms</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Ripple Climate Fund</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">UN World Food Programme</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold text-lg mb-4 bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">Community</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Governance</Link></li>
-              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Staking</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Farmer Network</Link></li>
+              <li><Link href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors">Impact Stories</Link></li>
             </ul>
           </div>
         </div>
