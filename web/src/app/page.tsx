@@ -161,19 +161,25 @@ export default function Home() {
           {policies.length > 0 ? (
             <div className="space-y-4">
               {policies.map((policy) => (
-                <div key={policy.id} className="p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100 dark:border-gray-700">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">{policy.id}</h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {policy.coverageAmount} USD • {policy.duration} months • {policy.assetType}
-                      </p>
+                <Link 
+                  key={policy.id} 
+                  href={`/policies/${policy.id}`}
+                  className="group block hover:-translate-y-0.5 transition-transform"
+                >
+                  <div className="p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100 dark:border-gray-700 cursor-pointer">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">{policy.id}</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {policy.coverageAmount} USD • {policy.duration} months • {policy.assetType}
+                        </p>
+                      </div>
+                      <span className="px-4 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-600 dark:text-green-400 rounded-full font-medium">
+                        {policy.status}
+                      </span>
                     </div>
-                    <span className="px-4 py-1.5 bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-600 dark:text-green-400 rounded-full font-medium">
-                      {policy.status}
-                    </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (

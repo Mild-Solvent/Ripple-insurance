@@ -7,5 +7,69 @@
     "assetType": "crypto",
     "status": "Active",
     "startDate": "2025-02-19T16:12:38.515Z"
+  },
+  {
+    "id": "POL-yplhi5zpa",
+    "premium": "1.05",
+    "coverageAmount": "21",
+    "policyStartDate": "2025-02-19T17:05:04.319Z",
+    "policyEndDate": "2025-02-19T17:05:04.319Z",
+    "assetType": "wallet",
+    "cropTypes": [
+      "grains"
+    ],
+    "farmSize": "32",
+    "location": "Aut magna ad dolores",
+    "deductible": "30",
+    "coverageTypes": [
+      "weather"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T17:05:04.319Z"
+  },
+  {
+    "id": "POL-lqhqaj7lw",
+    "premium": "0.70",
+    "coverageAmount": "14",
+    "policyStartDate": "2025-02-19T17:08:57.655Z",
+    "policyEndDate": "2025-02-19T17:08:57.655Z",
+    "assetType": "crypto",
+    "cropTypes": [
+      "grains",
+      "Maxime est rerum cul"
+    ],
+    "farmSize": "51",
+    "location": "Qui aut non dolorem ",
+    "deductible": "97",
+    "coverageTypes": [
+      "weather",
+      "Illo dolorum perfere"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T17:08:57.655Z"
+  },
+  {
+    "id": "POL-96erqqrzc",
+    "premium": "4.00",
+    "coverageAmount": "80",
+    "policyStartDate": "2025-02-19T17:12:34.653Z",
+    "policyEndDate": "2025-02-19T17:12:34.653Z",
+    "assetType": "wallet",
+    "cropTypes": [
+      "grains",
+      "Est pariatur Velit"
+    ],
+    "farmSize": "13",
+    "location": "Expedita nihil et do",
+    "deductible": "99",
+    "coverageTypes": [
+      "weather",
+      "Quo eius libero enim"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T17:12:34.653Z"
   }
 ]

@@ -2,27 +2,50 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FiInfo } from "react-icons/fi";
+
+const InfoIcon = ({ title, content }: { title: string; content: string }) => (
+  <div className="relative inline-block ml-2 group">
+    <FiInfo className="text-gray-400 hover:text-blue-500 cursor-pointer" />
+    <div className="absolute hidden group-hover:block bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 w-64 text-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
+      <strong className="block mb-1 text-blue-600">{title}</strong>
+      <p className="text-gray-600 dark:text-gray-300">{content}</p>
+    </div>
+  </div>
+);
 
 export default function CreatePolicy() {
   const [formData, setFormData] = useState({
     coverageAmount: "",
-    duration: "",
-    assetType: "crypto",
-    cropType: "grains", 
+    policyStartDate: new Date(),
+    policyEndDate: new Date(),
+    assetType: "credit-card",
+    cropTypes: ["grains"],
     farmSize: "",
     location: "",
     deductible: "",
-    coverageType: "weather"
+    coverageTypes: ["weather"]
   });
+
+  const [newCoverageType, setNewCoverageType] = useState("");
+  const [newCropType, setNewCropType] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const durationInMonths = Math.round(
+      (formData.policyEndDate.getTime() - formData.policyStartDate.getTime()) / 
+      (1000 * 60 * 60 * 24 * 30)
+    );
+
     const mockPolicy = {
       id: `POL-${Math.random().toString(36).slice(2, 11)}`,
       premium: (Number(formData.coverageAmount) * 0.05).toFixed(2),
       ...formData,
+      duration: durationInMonths.toString(),
       status: "Active",
-      startDate: new Date().toISOString()
+      startDate: formData.policyStartDate.toISOString()
     };
 
     try {
@@ -43,6 +66,33 @@ export default function CreatePolicy() {
     }
   };
 
+  const addCoverageType = (type: string) => {
+    if (!formData.coverageTypes.includes(type)) {
+      setFormData(prev => ({
+        ...prev,
+        coverageTypes: [...prev.coverageTypes, type]
+      }));
+    }
+  };
+
+  const removeCoverageType = (type: string) => {
+    setFormData(prev => ({
+      ...prev,
+      coverageTypes: prev.coverageTypes.filter(t => t !== type)
+    }));
+  };
+
+  const addCropType = (type: string) => {
+    if (type.trim() && !formData.cropTypes.includes(type)) {
+      setFormData(prev => ({...prev, cropTypes: [...prev.cropTypes, type.trim()]}));
+      setNewCropType("");
+    }
+  };
+
+  const removeCropType = (type: string) => {
+    setFormData(prev => ({...prev, cropTypes: prev.cropTypes.filter(t => t !== type)}));
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800">
       <main className="flex-1 container mx-auto px-4 py-16">
@@ -51,7 +101,13 @@ export default function CreatePolicy() {
           
           <form onSubmit={handleSubmit} className="space-y-6 p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700">
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Coverage Amount (USD)</label>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Coverage Amount (USD)</label>
+                <InfoIcon 
+                  title="Coverage Amount" 
+                  content="Total protection value in USD for your assets"
+                />
+              </div>
               <input
                 type="number"
                 required
@@ -62,48 +118,107 @@ export default function CreatePolicy() {
             </div>
             
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Policy Duration (months)</label>
-              <select
-                className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
-                value={formData.duration}
-                onChange={(e) => setFormData({...formData, duration: e.target.value})}
-              >
-                <option value="">Select duration</option>
-                <option value="6">6 months</option>
-                <option value="12">12 months</option>
-                <option value="24">24 months</option>
-              </select>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Policy Period</label>
+                <InfoIcon 
+                  title="Policy Duration" 
+                  content="Select start and end dates for your insurance coverage period"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm mb-1 block">Start Date</label>
+                  <DatePicker
+                    selected={formData.policyStartDate}
+                    onChange={(date: Date) => setFormData({...formData, policyStartDate: date})}
+                    minDate={new Date()}
+                    className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="text-sm mb-1 block">End Date</label>
+                  <DatePicker
+                    selected={formData.policyEndDate}
+                    onChange={(date: Date) => setFormData({...formData, policyEndDate: date})}
+                    minDate={formData.policyStartDate}
+                    className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Asset Type</label>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Payment Method</label>
+                <InfoIcon 
+                  title="Payment Method" 
+                  content="Select your preferred payment method for premium payments"
+                />
+              </div>
               <select
                 className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
                 value={formData.assetType}
                 onChange={(e) => setFormData({...formData, assetType: e.target.value})}
               >
-                <option value="crypto">Cryptocurrency</option>
-                <option value="nft">NFT</option>
-                <option value="wallet">Digital Wallet</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="crypto-wallet">Crypto Wallet</option>
+                <option value="bank-transfer">Bank Transfer</option>
+                <option value="sms">SMS</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Crop Type</label>
-              <select
-                className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
-                value={formData.cropType}
-                onChange={(e) => setFormData({...formData, cropType: e.target.value})}
-              >
-                <option value="grains">Grains</option>
-                <option value="vegetables">Vegetables</option>
-                <option value="fruits">Fruits</option>
-                <option value="livestock">Livestock</option>
-              </select>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Crop Types</label>
+                <InfoIcon 
+                  title="Crop Types" 
+                  content="Add specific agricultural products you want to insure"
+                />
+              </div>
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  placeholder="Enter crop type"
+                  className="flex-1 p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                  value={newCropType}
+                  onChange={(e) => setNewCropType(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && addCropType(newCropType)}
+                />
+                <button
+                  type="button"
+                  onClick={() => addCropType(newCropType)}
+                  className="px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                {formData.cropTypes.map(type => (
+                  <div key={type} className="flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full">
+                    <span className="mr-2 capitalize">{type}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeCropType(type)}
+                      className="hover:text-green-500"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Farm Size (acres)</label>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Farm Size (acres)</label>
+                <InfoIcon 
+                  title="Farm Size" 
+                  content="Total agricultural land area being insured"
+                />
+              </div>
               <input
                 type="number"
                 min="0"
@@ -116,7 +231,13 @@ export default function CreatePolicy() {
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Location</label>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Location</label>
+                <InfoIcon 
+                  title="Location" 
+                  content="Geographical location of the insured assets"
+                />
+              </div>
               <input
                 type="text"
                 required
@@ -127,7 +248,13 @@ export default function CreatePolicy() {
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Deductible (%)</label>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Deductible (%)</label>
+                <InfoIcon 
+                  title="Deductible" 
+                  content="Percentage of loss you'll cover before insurance applies"
+                />
+              </div>
               <input
                 type="number"
                 min="0"
@@ -141,17 +268,49 @@ export default function CreatePolicy() {
             </div>
 
             <div>
-              <label className="block text-lg mb-2 text-gray-700 dark:text-gray-300">Coverage Type</label>
-              <select
-                className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
-                value={formData.coverageType}
-                onChange={(e) => setFormData({...formData, coverageType: e.target.value})}
-              >
-                <option value="weather">Weather Damage</option>
-                <option value="pests">Pest Infestation</option>
-                <option value="disease">Crop Disease</option>
-                <option value="fire">Wildfire</option>
-              </select>
+              <div className="flex items-center mb-2">
+                <label className="block text-lg text-gray-700 dark:text-gray-300">Coverage Types</label>
+                <InfoIcon 
+                  title="Coverage Types" 
+                  content="Specific risks and scenarios covered by this policy"
+                />
+              </div>
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  placeholder="Enter coverage type"
+                  className="flex-1 p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                  value={newCoverageType}
+                  onChange={(e) => setNewCoverageType(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && addCoverageType(newCoverageType)}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (newCoverageType.trim()) {
+                      addCoverageType(newCoverageType.trim());
+                      setNewCoverageType("");
+                    }
+                  }}
+                  className="px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-2">
+                {formData.coverageTypes.map(type => (
+                  <div key={type} className="flex items-center bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full">
+                    <span className="mr-2 capitalize">{type}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeCoverageType(type)}
+                      className="hover:text-blue-500"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="flex gap-4 mt-8">
