@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FiInfo } from "react-icons/fi";
+import { FiInfo, FiCreditCard, FiLock, FiCheckCircle } from "react-icons/fi";
 
 const InfoIcon = ({ title, content }: { title: string; content: string }) => (
   <div className="relative inline-block ml-2 group">
@@ -33,6 +33,7 @@ export default function CreatePolicy() {
   const [newCropType, setNewCropType] = useState("");
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [paymentProcessing, setPaymentProcessing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,10 +76,12 @@ export default function CreatePolicy() {
   };
 
   const handlePaymentConfirmation = async () => {
+    setPaymentProcessing(true);
+    // Simulate payment processing
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setPaymentProcessing(false);
     setShowPaymentModal(false);
     setPaymentConfirmed(true);
-    const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
-    await handleSubmit(fakeEvent);
   };
 
   const getPaymentMethodName = (method: string) => {
@@ -352,35 +355,83 @@ export default function CreatePolicy() {
                   !paymentConfirmed ? 'animate-pulse' : ''
                 }`}
               >
-                {paymentConfirmed ? 'Create Policy' : 'Confirm Payment'}
+                {paymentConfirmed ? 'Complete Policy Creation' : 'Proceed to Payment'}
               </button>
             </div>
           </form>
 
           {showPaymentModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full space-y-4">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                  Confirm Payment
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  You're about to complete payment using {getPaymentMethodName(formData.assetType)}.
-                  Confirm this transaction?
-                </p>
-                <div className="flex gap-4 justify-end">
-                  <button
-                    onClick={() => setShowPaymentModal(false)}
-                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handlePaymentConfirmation}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                  >
-                    Confirm Payment
-                  </button>
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full space-y-6">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                    Payment Details
+                  </h3>
+                  <FiLock className="text-green-500 text-xl" />
                 </div>
+
+                <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
+                  <div className="flex justify-between mb-2">
+                    <span className="text-gray-600 dark:text-gray-400">Premium Amount:</span>
+                    <span className="font-semibold">${(Number(formData.coverageAmount) * 0.05).toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Payment Method:</span>
+                    <span className="font-semibold flex items-center">
+                      <FiCreditCard className="mr-2" />
+                      {getPaymentMethodName(formData.assetType)}
+                    </span>
+                  </div>
+                </div>
+
+                {paymentProcessing ? (
+                  <div className="text-center py-4">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+                    <p className="text-gray-600 dark:text-gray-400">Processing payment...</p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="space-y-4">
+                      {formData.assetType === 'credit-card' && (
+                        <>
+                          <input
+                            type="text"
+                            placeholder="Card Number"
+                            className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                          />
+                          <div className="grid grid-cols-2 gap-4">
+                            <input
+                              type="text"
+                              placeholder="MM/YY"
+                              className="p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                            />
+                            <input
+                              type="text"
+                              placeholder="CVC"
+                              className="p-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    <div className="flex gap-4 justify-end">
+                      <button
+                        onClick={() => setShowPaymentModal(false)}
+                        className="px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handlePaymentConfirmation}
+                        className="px-6 py-2 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg hover:shadow-lg transition-all duration-200 flex items-center"
+                      >
+                        <FiCheckCircle className="mr-2" />
+                        {paymentConfirmed ? 'Finish' : `Pay $${(Number(formData.coverageAmount) * 0.05).toFixed(2)}`}
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}

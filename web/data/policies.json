@@ -93,5 +93,68 @@
     "duration": "0",
     "status": "Active",
     "startDate": "2025-02-19T17:29:38.209Z"
+  },
+  {
+    "id": "POL-is2yxk66b",
+    "premium": "0.70",
+    "coverageAmount": "14",
+    "policyStartDate": "2025-02-19T18:04:10.764Z",
+    "policyEndDate": "2025-02-19T18:04:10.764Z",
+    "assetType": "sms",
+    "cropTypes": [
+      "grains",
+      "Dolorem excepteur et"
+    ],
+    "farmSize": "5",
+    "location": "Numquam sed ut expli",
+    "deductible": "40",
+    "coverageTypes": [
+      "weather",
+      "Aut aut voluptatem v"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T18:04:10.764Z"
+  },
+  {
+    "id": "POL-yeehevnoj",
+    "premium": "0.35",
+    "coverageAmount": "7",
+    "policyStartDate": "2025-02-19T18:07:21.479Z",
+    "policyEndDate": "2025-02-19T18:07:21.479Z",
+    "assetType": "crypto-wallet",
+    "cropTypes": [
+      "grains"
+    ],
+    "farmSize": "37",
+    "location": "Rerum facere rerum d",
+    "deductible": "31",
+    "coverageTypes": [
+      "weather"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T18:07:21.479Z"
+  },
+  {
+    "id": "POL-9elwsgzpu",
+    "premium": "0.05",
+    "coverageAmount": "1",
+    "policyStartDate": "2025-02-19T18:09:34.000Z",
+    "policyEndDate": "2027-05-19T17:09:34.000Z",
+    "assetType": "credit-card",
+    "cropTypes": [
+      "Corn",
+      "Potatoes"
+    ],
+    "farmSize": "18",
+    "location": "Odio ipsa laboris q",
+    "deductible": "7",
+    "coverageTypes": [
+      "weather"
+    ],
+    "duration": "27",
+    "status": "Active",
+    "startDate": "2025-02-19T18:09:34.000Z"
   }
 ]
