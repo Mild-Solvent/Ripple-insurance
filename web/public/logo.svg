@@ -1,0 +1,5 @@
+<svg width="250" height="60" viewBox="0 0 250 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="20" font-family="Arial, sans-serif" font-size="14" fill="black">Insurance made possible by</text>
+  <text x="10" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="black">XRLP</text>
+  <rect x="5" y="5" width="240" height="50" stroke="black" stroke-width="2" fill="none" rx="8"/>
+</svg>
