@@ -71,5 +71,27 @@
     "duration": "0",
     "status": "Active",
     "startDate": "2025-02-19T17:12:34.653Z"
+  },
+  {
+    "id": "POL-wgg32gl26",
+    "premium": "2.90",
+    "coverageAmount": "58",
+    "policyStartDate": "2025-02-19T17:29:38.209Z",
+    "policyEndDate": "2025-02-19T17:29:38.209Z",
+    "assetType": "credit-card",
+    "cropTypes": [
+      "grains",
+      "Eaque mollit sit ne"
+    ],
+    "farmSize": "1",
+    "location": "Aspernatur aspernatu",
+    "deductible": "34",
+    "coverageTypes": [
+      "weather",
+      "Provident commodo q"
+    ],
+    "duration": "0",
+    "status": "Active",
+    "startDate": "2025-02-19T17:29:38.209Z"
   }
 ]

@@ -31,9 +31,17 @@ export default function CreatePolicy() {
 
   const [newCoverageType, setNewCoverageType] = useState("");
   const [newCropType, setNewCropType] = useState("");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!paymentConfirmed) {
+      setShowPaymentModal(true);
+      return;
+    }
+
     const durationInMonths = Math.round(
       (formData.policyEndDate.getTime() - formData.policyStartDate.getTime()) / 
       (1000 * 60 * 60 * 24 * 30)
@@ -63,6 +71,24 @@ export default function CreatePolicy() {
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to save policy. Please try again.');
+    }
+  };
+
+  const handlePaymentConfirmation = async () => {
+    setShowPaymentModal(false);
+    setPaymentConfirmed(true);
+    const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+    await handleSubmit(fakeEvent);
+  };
+
+  const getPaymentMethodName = (method: string) => {
+    switch (method) {
+      case 'credit-card': return 'Credit Card';
+      case 'paypal': return 'PayPal';
+      case 'crypto-wallet': return 'Crypto Wallet';
+      case 'bank-transfer': return 'Bank Transfer';
+      case 'sms': return 'SMS Payment';
+      default: return 'Payment';
     }
   };
 
@@ -322,12 +348,42 @@ export default function CreatePolicy() {
               </Link>
               <button
                 type="submit"
-                className="bg-gradient-to-r from-green-600 to-emerald-500 text-white px-8 py-3 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium"
+                className={`bg-gradient-to-r from-green-600 to-emerald-500 text-white px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-200 font-medium ${
+                  !paymentConfirmed ? 'animate-pulse' : ''
+                }`}
               >
-                Create Policy
+                {paymentConfirmed ? 'Create Policy' : 'Confirm Payment'}
               </button>
             </div>
           </form>
+
+          {showPaymentModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full space-y-4">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  Confirm Payment
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  You're about to complete payment using {getPaymentMethodName(formData.assetType)}.
+                  Confirm this transaction?
+                </p>
+                <div className="flex gap-4 justify-end">
+                  <button
+                    onClick={() => setShowPaymentModal(false)}
+                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handlePaymentConfirmation}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Confirm Payment
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>
