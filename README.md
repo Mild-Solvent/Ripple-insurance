@@ -35,7 +35,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 
 ## Product Demo: Farmer Journey
 
-![Climate-Resilient Blockchain Insurance dApp](./Dentralized%20Crop%20Insurance%20Platform.png)
+![Define the Golden Parth]([./Dentralized%20Crop%20Insurance%20Platform.png](https://github.com/Mild-Solvent/Ripple-insurance/blob/main/Insurance%20Coverage.png))
 
 ## Why XRPL?
 - 3-second transaction finality
