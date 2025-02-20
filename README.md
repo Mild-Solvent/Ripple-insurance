@@ -20,7 +20,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **Ethereum Smart Contracts**: Trustless policy management
 - **Chainlink Oracles**: Real-time NASA/MODIS weather data integration
 
-![Climate-Resilient Blockchain Insurance dApp](./Insurance%20Coverage.png)
+![Climate-Resilient Blockchain Insurance1 dApp](./Insurance%20Coverage.png)
 
 ### Key Features
 - Parametric triggers using satellite/IoT data
