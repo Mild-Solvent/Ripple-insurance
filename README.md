@@ -1,4 +1,7 @@
-# Climate-Resilient Blockchain Insurance dApp
+## Climate-Resilient Blockchain Insurance dApp
+
+
+![Climate-Resilient Blockchain Insurance dApp](./Decentralized%20Crop%20Insurance%20Platform.png)
 
 ## Overview
 Instant, fraud-proof crop insurance using hybrid blockchain technology to protect 300M smallholder farmers against climate disasters. Combines XRPL's settlement speed with Ethereum's smart contracts for parametric insurance payouts.
@@ -14,6 +17,8 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **Ethereum Smart Contracts**: Trustless policy management
 - **Chainlink Oracles**: Real-time NASA/MODIS weather data integration
 
+[![Watch on YouTube](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=Usbe8iC-c1E&feature=youtu.be)
+
 ### Key Features
 - Parametric triggers using satellite/IoT data
 - NYDFS-regulated RLUSD stablecoin payments
@@ -26,13 +31,8 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **Stablecoin**: RLUSD (Ripple Liquidity USD)
 
 ## Product Demo: Farmer Journey
-```mermaid
-graph TD
-  A[Policy Purchase] --> B[5 RLUSD/hectare via SMS]
-  B --> C[Real-time Satellite Monitoring]
-  C --> D{300mm Rainfall Threshold}
-  D -->|Breached| E[Auto-payout in 1hr]
-```
+
+![Climate-Resilient Blockchain Insurance dApp](./Dentralized%20Crop%20Insurance%20Platform.png)
 
 ## Why XRPL?
 - 3-second transaction finality
