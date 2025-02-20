@@ -5,6 +5,7 @@ import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiInfo, FiCreditCard, FiLock, FiCheckCircle } from "react-icons/fi";
+import { ethers } from "ethers";
 
 const InfoIcon = ({ title, content }: { title: string; content: string }) => (
   <div className="relative inline-block ml-2 group">
@@ -34,6 +35,9 @@ export default function CreatePolicy() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [paymentProcessing, setPaymentProcessing] = useState(false);
+
+  const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
+  const [signer, setSigner] = useState<ethers.Signer | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,13 +79,44 @@ export default function CreatePolicy() {
     }
   };
 
+  const handleMetaMaskPayment = async () => {
+    if (!window.ethereum) {
+      alert("Please install MetaMask!");
+      return;
+    }
+
+    try {
+      setPaymentProcessing(true);
+      
+      // Just request account connection to show MetaMask popup
+      await window.ethereum.request({ 
+        method: 'eth_requestAccounts' 
+      });
+
+      // Simulate transaction processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      setPaymentProcessing(false);
+      setShowPaymentModal(false);
+      setPaymentConfirmed(true);
+
+    } catch (error) {
+      console.error("Payment error:", error);
+      setPaymentProcessing(false);
+      alert("Payment failed. Please try again.");
+    }
+  };
+
   const handlePaymentConfirmation = async () => {
-    setPaymentProcessing(true);
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setPaymentProcessing(false);
-    setShowPaymentModal(false);
-    setPaymentConfirmed(true);
+    if (formData.assetType === 'crypto-wallet') {
+      await handleMetaMaskPayment();
+    } else {
+      setPaymentProcessing(true);
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setPaymentProcessing(false);
+      setShowPaymentModal(false);
+      setPaymentConfirmed(true);
+    }
   };
 
   const getPaymentMethodName = (method: string) => {
@@ -192,8 +227,8 @@ export default function CreatePolicy() {
                 onChange={(e) => setFormData({...formData, assetType: e.target.value})}
               >
                 <option value="credit-card">Credit Card</option>
+                <option value="crypto-wallet">MetaMask (ETH)</option>
                 <option value="paypal">PayPal</option>
-                <option value="crypto-wallet">Crypto Wallet</option>
                 <option value="bank-transfer">Bank Transfer</option>
                 <option value="sms">SMS</option>
               </select>
@@ -392,7 +427,17 @@ export default function CreatePolicy() {
                 ) : (
                   <>
                     <div className="space-y-4">
-                      {formData.assetType === 'credit-card' && (
+                      {formData.assetType === 'crypto-wallet' ? (
+                        <div className="text-center">
+                          <img src="/metamask-fox.svg" alt="MetaMask" className="w-16 h-16 mx-auto mb-4" />
+                          <p className="text-gray-600 dark:text-gray-400 mb-4">
+                            You will be prompted to confirm the transaction in MetaMask
+                          </p>
+                          <p className="font-semibold">
+                            Amount: {(Number(formData.coverageAmount) * 0.05).toFixed(4)} ETH
+                          </p>
+                        </div>
+                      ) : (
                         <>
                           <input
                             type="text"
@@ -427,7 +472,7 @@ export default function CreatePolicy() {
                         className="px-6 py-2 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg hover:shadow-lg transition-all duration-200 flex items-center"
                       >
                         <FiCheckCircle className="mr-2" />
-                        {paymentConfirmed ? 'Finish' : `Pay $${(Number(formData.coverageAmount) * 0.05).toFixed(2)}`}
+                        {formData.assetType === 'crypto-wallet' ? 'Pay with MetaMask' : `Pay $${(Number(formData.coverageAmount) * 0.05).toFixed(2)}`}
                       </button>
                     </div>
                   </>

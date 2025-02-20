@@ -156,5 +156,25 @@
     "duration": "27",
     "status": "Active",
     "startDate": "2025-02-19T18:09:34.000Z"
+  },
+  {
+    "id": "POL-72mzov92c",
+    "premium": "2500.00",
+    "coverageAmount": "50000",
+    "policyStartDate": "2025-02-20T00:40:08.948Z",
+    "policyEndDate": "2025-11-20T00:40:08.000Z",
+    "assetType": "crypto-wallet",
+    "cropTypes": [
+      "grains"
+    ],
+    "farmSize": "50",
+    "location": "Canada",
+    "deductible": "9",
+    "coverageTypes": [
+      "weather"
+    ],
+    "duration": "9",
+    "status": "Active",
+    "startDate": "2025-02-20T00:40:08.948Z"
   }
 ]
