@@ -20,7 +20,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **Ethereum Smart Contracts**: Trustless policy management
 - **Chainlink Oracles**: Real-time NASA/MODIS weather data integration
 
-![Climate-Resilient Blockchain Insurance dApp] https://github.com/Mild-Solvent/Ripple-insurance/blob/main/Insurance%20Coverage.png
+![Climate-Resilient Blockchain Insurance dApp](./Insurance%20Coverage.png)
 
 ### Key Features
 - Parametric triggers using satellite/IoT data
@@ -35,7 +35,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 
 ## Product Demo: Farmer Journey
 
-![Define the Golden Parth]([./Dentralized%20Crop%20Insurance%20Platform.png](https://github.com/Mild-Solvent/Ripple-insurance/blob/main/Insurance%20Coverage.png))
+![Climate-Resilient Blockchain Insurance dApp]([./Dentralized%20Crop%20Insurance%20Platform.png)
 
 ## Why XRPL?
 - 3-second transaction finality
