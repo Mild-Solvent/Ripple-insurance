@@ -6,6 +6,9 @@
 ## Overview
 Instant, fraud-proof crop insurance using hybrid blockchain technology to protect 300M smallholder farmers against climate disasters. Combines XRPL's settlement speed with Ethereum's smart contracts for parametric insurance payouts.
 
+
+[![Watch on YouTube](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=m4vbBTc38Tk)
+
 ## The Problem
 - **Vulnerability**: 300M farmers face annual climate disasters
 - **Financial Exclusion**: 95% lack affordable insurance (20% income premiums)
@@ -16,8 +19,6 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **XRPL Ledger**: 3-second settlement for RLUSD payouts
 - **Ethereum Smart Contracts**: Trustless policy management
 - **Chainlink Oracles**: Real-time NASA/MODIS weather data integration
-
-[![Watch on YouTube](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=m4vbBTc38Tk)
 
 ### Key Features
 - Parametric triggers using satellite/IoT data
