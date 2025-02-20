@@ -17,7 +17,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - **Ethereum Smart Contracts**: Trustless policy management
 - **Chainlink Oracles**: Real-time NASA/MODIS weather data integration
 
-[![Watch on YouTube](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=Usbe8iC-c1E&feature=youtu.be)
+[![Watch on YouTube](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=m4vbBTc38Tk)
 
 ### Key Features
 - Parametric triggers using satellite/IoT data
