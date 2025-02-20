@@ -42,7 +42,7 @@ Instant, fraud-proof crop insurance using hybrid blockchain technology to protec
 - Native token support for RLUSD
 - Carbon-neutral network (aligned with climate goals)
 
-![Climate-Resilient Blockchain Insurance dApp](./Screenshot%202025-02-20%20094012.png
+![Climate-Resilient Blockchain Insurance dApp](./Screenshot%202025-02-20%20094012.png).
 
 
 
