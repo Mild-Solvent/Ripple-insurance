@@ -88,12 +88,10 @@ export default function CreatePolicy() {
     try {
       setPaymentProcessing(true);
       
-      // Just request account connection to show MetaMask popup
       await window.ethereum.request({ 
         method: 'eth_requestAccounts' 
       });
 
-      // Simulate transaction processing
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       setPaymentProcessing(false);
